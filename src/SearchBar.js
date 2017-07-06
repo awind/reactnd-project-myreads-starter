@@ -3,6 +3,7 @@ import './App.css'
 import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBook from './ListBook'
+import DebounceInput from 'react-debounce-input';
 
 class SearchBar extends Component {
 
@@ -17,8 +18,8 @@ class SearchBar extends Component {
 
     handleChange(event) {
         this.setState({query: event.target.value})
-        console.log(event.target.value)
-        BooksAPI.search(this.state.query, 20).then((books) => {
+        BooksAPI.search(this.state.query).then((books) => {
+            console.log(books)
             this.setState({books: books})
         })
     }
@@ -31,7 +32,12 @@ class SearchBar extends Component {
                         Close
                     </Link>
                     <div className="search-books-input-wrapper">
-                        <input type="text" placeholder="Search by title or author" value={this.state.query} onChange={this.handleChange} />
+
+                        <DebounceInput
+                            type="text" placeholder="Search by title or author" 
+                            minLength={2}
+                            debounceTimeout={500}
+                            onChange={this.handleChange} />
                     </div>
                 </div>
                 <div className="search-books-results">

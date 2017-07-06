@@ -15,7 +15,7 @@ class ListBook extends Component {
                                 <SelectMenu />
                                 </div>
                                 <div className="book-title">{book.title}</div>
-                                <div className="book-authors">{book.authors.reduce((prev, cur) => `${prev}, ${cur}` )}</div>
+                                <div className="book-authors">{book.authors && (book.authors.reduce((prev, cur) => `${prev}, ${cur}`))}</div>
                             </div>
                         </li>
                     )}
