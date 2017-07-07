@@ -19,8 +19,9 @@ class SearchBar extends Component {
     handleChange(event) {
         this.setState({query: event.target.value})
         BooksAPI.search(this.state.query).then((books) => {
-            console.log(books)
-            this.setState({books: books})
+            if (!books.error) {
+                this.setState({books: books})
+            } 
         })
     }
 
@@ -32,7 +33,6 @@ class SearchBar extends Component {
                         Close
                     </Link>
                     <div className="search-books-input-wrapper">
-
                         <DebounceInput
                             type="text" placeholder="Search by title or author" 
                             minLength={2}
