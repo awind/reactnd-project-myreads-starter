@@ -14,7 +14,6 @@ class SearchPage extends Component {
             books: []
         }
         this.handleChange = this.handleChange.bind(this)
-        this.refresh = this.refresh.bind(this)
     }
 
     handleChange(event) {
@@ -29,26 +28,6 @@ class SearchPage extends Component {
             })
         }
     }
-
-    refresh(book, shelf) {
-        console.log(book)
-        console.log(shelf)
-        // console.log(this.state.books)
-        BooksAPI.update(book, shelf)
-        .then(() => 
-            this.setState(state => {
-            const newBooks = state.books.map(item => {
-                item.shelf = item.id === book.id ? shelf : item.shelf
-                return item
-                }
-                )
-            console.log(newBooks)
-            return {
-                books: newBooks
-            }
-            })
-        )
-  }
 
     render() {
         return (
@@ -71,10 +50,10 @@ class SearchPage extends Component {
 
                 <div className="list-books-content">
                     <div>
-                        <BookShelf title="Currently Reading" books={this.state.books.filter((book) => book.shelf === 'currentlyReading')} updateShelf={(book, shelf) => this.refresh(book, shelf)} />
-                        <BookShelf title="Want To Read" books={this.state.books.filter((book) => book.shelf === 'wantToRead')} updateShelf={(book, shelf) => this.refresh(book, shelf)} />
-                        <BookShelf title="Read" books={this.state.books.filter((book) => book.shelf === 'read')} updateShelf={(book, shelf) => this.refresh(book, shelf)} />
-                        <BookShelf title="None" books={this.state.books.filter((book) => book.shelf === 'none')} updateShelf={(book, shelf) => this.refresh(book, shelf)} />
+                        <BookShelf title="Currently Reading" books={this.state.books.filter((book) => book.shelf === 'currentlyReading')} updateShelf={(book, shelf) => this.props.addShelf(book, shelf)} />
+                        <BookShelf title="Want To Read" books={this.state.books.filter((book) => book.shelf === 'wantToRead')} updateShelf={(book, shelf) => this.props.addShelf(book, shelf)} />
+                        <BookShelf title="Read" books={this.state.books.filter((book) => book.shelf === 'read')} updateShelf={(book, shelf) => this.props.addShelf(book, shelf)} />
+                        <BookShelf title="None" books={this.state.books.filter((book) => book.shelf === 'none')} updateShelf={(book, shelf) => this.props.addShelf(book, shelf)} />
                     </div>
                 </div>
 
