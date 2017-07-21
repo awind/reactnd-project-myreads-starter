@@ -3,16 +3,6 @@ import SelectMenu from './SelectMenu'
 
 class ListBook extends Component {
 
-    // constructor(props) {
-    //     super(props)
-    //     this.refresh = this.refresh.bind(this)
-    // }
-
-    // refresh(book, shelf) {
-    //     this.props.callbackToParent(book, shelf)
-    //     console.log('refresh listbook')
-    // }
-
     render() {
         const books = this.props.books
         return (

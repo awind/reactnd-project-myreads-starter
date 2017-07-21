@@ -30,7 +30,13 @@ class SearchPage extends Component {
                         }
                         return book
                     })
-                    this.setState({books: newBooks})
+
+                    // remove duplicate book
+                    const processedBooks = newBooks.filter((obj, pos, arr) => {
+                        return arr.map(mapObj => mapObj.id).indexOf(obj.id) === pos;
+                    })
+
+                    this.setState({books: processedBooks})
                 }
             })
         }

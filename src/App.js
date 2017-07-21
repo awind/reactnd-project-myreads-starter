@@ -32,7 +32,6 @@ class BooksApp extends Component {
             book.shelf = shelf
             newBooks.push(book)
           }
-          //console.log(newBooks)
           return {
             books: newBooks
           }
