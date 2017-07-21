@@ -8,8 +8,8 @@ class ListBook extends Component {
         return (
             <div className="bookshelf-books">
                 <ol className="books-grid">
-                    {books.map((book) => 
-                        <li key={book.id}>
+                    return {books.map((book, i) => 
+                        <li key={i}>
                             <div className="book">
                                 <div className="book-top">
                                 <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
