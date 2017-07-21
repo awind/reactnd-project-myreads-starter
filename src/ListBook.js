@@ -8,7 +8,7 @@ class ListBook extends Component {
         return (
             <div className="bookshelf-books">
                 <ol className="books-grid">
-                    return {books.map((book, i) => 
+                     {books.map((book, i) => 
                         <li key={i}>
                             <div className="book">
                                 <div className="book-top">
