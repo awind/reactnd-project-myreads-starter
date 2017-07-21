@@ -18,13 +18,20 @@ class SearchPage extends Component {
 
     handleChange(event) {
         const query = event.target.value.trim()
+        const mainBooks = this.props.mainBooks
         this.setState({query: query})
         if (query) {
             BooksAPI.search(query).then((books) => {
                 if (!books.error) {
-                    console.log(books)
-                    this.setState({books: books})
-                } 
+                    const newBooks = books.map((book) => {
+                        const mainBook = mainBooks.find((item) => item.id === book.id)
+                        if(mainBook) {
+                            book.shelf = mainBook.shelf
+                        }
+                        return book
+                    })
+                    this.setState({books: newBooks})
+                }
             })
         }
     }

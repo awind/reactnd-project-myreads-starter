@@ -32,19 +32,13 @@ class BooksApp extends Component {
             book.shelf = shelf
             newBooks.push(book)
           }
-          console.log(newBooks)
+          //console.log(newBooks)
           return {
             books: newBooks
           }
         })
     )
   }
-
-  // addShelf(book, shelf) {
-  //   BooksAPI.update(book, shelf).then(() =>
-  //     this.setState
-  //   )
-  // }
 
   render() {
     const read = this.state.books.filter((book) => book.shelf === 'read')
@@ -72,7 +66,7 @@ class BooksApp extends Component {
         </Route>
 
         <Route exact path='/search' render={() => (
-          <SearchPage addShelf={(book, shelf) => this.refresh(book, shelf)} />
+          <SearchPage addShelf={(book, shelf) => this.refresh(book, shelf)} mainBooks={this.state.books} />
         )}>
         </Route>
       </div>
